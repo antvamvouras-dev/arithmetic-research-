@@ -1,0 +1,25 @@
+{
+  "experiment_id": "DHMC-001",
+  "prime_upper_scale": 10000000,
+  "windows": 4,
+  "split": {"type": "chronological", "train_fraction": 0.5},
+  "gap_bins": [16, 32],
+  "moduli": [6, 30],
+  "mc_replicates": [100, 1000, 10000],
+  "smoothing": "TO_BE_FROZEN_FROM_CANONICAL_BENCHMARK",
+  "initial_state_policy": "TO_BE_FROZEN",
+  "seed_policy": "explicit_manifest",
+  "primary_outputs": [
+    "state_occupancy",
+    "transition_counts",
+    "additive_log_score_mean",
+    "additive_log_score_variance",
+    "runtime_seconds",
+    "peak_memory_mb"
+  ],
+  "validation": {
+    "row_stochastic_tolerance": 1e-12,
+    "bruteforce_small_state": true,
+    "mc_uncertainty_comparison": true
+  }
+}
