@@ -23,13 +23,13 @@ inductive Step : S → S → Prop
   | bridge_canon : Step bridge canon
 
 /-- A normal state has no outgoing rewrite. -/
-def Normal (x : S) : Prop := ∀ y, ¬ Step x y
+def IsNormalS (x : S) : Prop := ∀ y, ¬ Step x y
 
-theorem trap_normal : Normal trap := by
+theorem trap_isNormal : IsNormalS trap := by
   intro y h
   cases h
 
-theorem canon_normal : Normal canon := by
+theorem canon_isNormal : IsNormalS canon := by
   intro y h
   cases h
 
@@ -49,8 +49,8 @@ theorem trap_ne_canon : trap ≠ canon := by decide
 
 /-- SC-012: a locally cheaper strictly descending successor can be a noncanonical normal form. -/
 theorem SC012_local_descent_obstruction :
-    Step start trap ∧ cost trap < cost start ∧ Normal trap ∧ trap ≠ canon := by
-  exact ⟨start_to_trap, trap_cheaper_than_start, trap_normal, trap_ne_canon⟩
+    Step start trap ∧ cost trap < cost start ∧ IsNormalS trap ∧ trap ≠ canon := by
+  exact ⟨start_to_trap, trap_cheaper_than_start, trap_isNormal, trap_ne_canon⟩
 
 /-- A simple consequence label. Every state has the same label, so every step preserves it. -/
 def consequence : S → Nat := fun _ => 0
@@ -63,8 +63,8 @@ theorem all_steps_preserve : PreservesConsequence := by
 
 /-- SC-013: preservation alone does not imply canonicality. -/
 theorem SC013_preservation_not_canonicality :
-    PreservesConsequence ∧ Step start trap ∧ Normal trap ∧ trap ≠ canon := by
-  exact ⟨all_steps_preserve, start_to_trap, trap_normal, trap_ne_canon⟩
+    PreservesConsequence ∧ Step start trap ∧ IsNormalS trap ∧ trap ≠ canon := by
+  exact ⟨all_steps_preserve, start_to_trap, trap_isNormal, trap_ne_canon⟩
 
 /-- Second finite system: cheap invalid path vs safe valid path. -/
 inductive G where
@@ -119,10 +119,10 @@ theorem normal_reach_eq {α : Type} {r : α → α → Prop} {n z : α}
     (hn : NormalFor r n) (h : Reach r n z) : z = n := by
   induction h with
   | refl => rfl
-  | tail hxy hyz ih =>
-      have hstep : r n _ := by
+  | @tail b c hxy hyz ih =>
+      have hstep : r n c := by
         simpa [ih] using hyz
-      exact (hn _ hstep).elim
+      exact (hn c hstep).elim
 
 /-- SC-009: confluence from x implies uniqueness of reachable normal forms. -/
 theorem SC009_confluence_unique_normal_form
