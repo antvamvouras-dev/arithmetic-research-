@@ -48,7 +48,7 @@ theorem SC016_incomparable_normals_no_least
     {α : Type}
     {r le : α → α → Prop}
     {x a b : α}
-    (hxa : ReachO r x a)
+    (_hxa : ReachO r x a)
     (hxb : ReachO r x b)
     (hna : NormalO r a)
     (hnb : NormalO r b)
