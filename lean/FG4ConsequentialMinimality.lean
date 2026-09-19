@@ -146,10 +146,11 @@ def hObs : HState → Nat
 theorem h_eq_at_horizon_zero :
     FutureEqUpTo hStep hObs 0 HState.a HState.b := by
   intro w hw
-  have hlen : w.length = 0 := Nat.eq_zero_of_le_zero hw
-  have hw_nil : w = [] := List.length_eq_zero.mp hlen
-  subst w
-  rfl
+  cases w with
+  | nil =>
+      rfl
+  | cons a t =>
+      simp at hw
 
 theorem h_not_eq_at_horizon_one :
     ¬ FutureEqUpTo hStep hObs 1 HState.a HState.b := by
