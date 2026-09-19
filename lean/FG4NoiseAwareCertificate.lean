@@ -24,8 +24,8 @@ For fixed future tolerance epsilon:
 theorem SC046_scale_interval_nonnegative
     (A lower delta upper : ℝ)
     (hA : 0 ≤ A)
-    (_hl : lower ≤ delta)
-    (_hu : delta ≤ upper) :
+    (hl : lower ≤ delta)
+    (hu : delta ≤ upper) :
     A * lower ≤ A * delta ∧
     A * delta ≤ A * upper := by
   constructor
@@ -35,7 +35,7 @@ theorem SC046_scale_interval_nonnegative
 theorem SC047_certified_future_merge
     (A lower delta upper eps : ℝ)
     (hA : 0 ≤ A)
-    (hl : lower ≤ delta)
+    (_hl : lower ≤ delta)
     (hu : delta ≤ upper)
     (hcert : A * upper ≤ eps) :
     A * delta ≤ eps := by
@@ -48,7 +48,7 @@ theorem SC048_certified_future_split
     (A lower delta upper eps : ℝ)
     (hA : 0 ≤ A)
     (hl : lower ≤ delta)
-    (hu : delta ≤ upper)
+    (_hu : delta ≤ upper)
     (hcert : eps < A * lower) :
     eps < A * delta := by
   have hscaled :
