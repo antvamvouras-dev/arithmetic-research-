@@ -24,8 +24,8 @@ For fixed future tolerance epsilon:
 theorem SC046_scale_interval_nonnegative
     (A lower delta upper : ℝ)
     (hA : 0 ≤ A)
-    (hl : lower ≤ delta)
-    (hu : delta ≤ upper) :
+    (_hl : lower ≤ delta)
+    (_hu : delta ≤ upper) :
     A * lower ≤ A * delta ∧
     A * delta ≤ A * upper := by
   constructor
@@ -56,7 +56,7 @@ theorem SC048_certified_future_split
     mul_le_mul_of_nonneg_left hl hA
   exact lt_of_lt_of_le hcert hscaled
 
-def RequiredInitialTolerance
+noncomputable def RequiredInitialTolerance
     (A eps : ℝ) : ℝ :=
   eps / A
 
