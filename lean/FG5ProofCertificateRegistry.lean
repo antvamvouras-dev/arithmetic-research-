@@ -55,7 +55,7 @@ theorem SC059_registry_discharges_obligations
   | cons o os ih =>
       exact ⟨registry.1.witness, ih registry.2⟩
 
-theorem SC060_extend_registry
+def SC060_extend_registry
     (o : NamedObligationK)
     (os : List NamedObligationK)
     (e : Evidence o.statement)
@@ -63,7 +63,7 @@ theorem SC060_extend_registry
     CertificateRegistry (o :: os) := by
   exact ⟨e, registry⟩
 
-theorem SC061_tail_registry
+def SC061_tail_registry
     (o : NamedObligationK)
     (os : List NamedObligationK)
     (registry : CertificateRegistry (o :: os)) :
