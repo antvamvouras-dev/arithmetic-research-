@@ -53,8 +53,7 @@ theorem SC055_obligation_refinement_preorder :
       ObligationRefines b c →
       ObligationRefines a c) := by
   constructor
-  · intro obs
-    intro h
+  · intro obs h
     exact h
   · intro a b c hab hbc ha
     exact hbc (hab ha)
