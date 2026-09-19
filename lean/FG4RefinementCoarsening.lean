@@ -97,7 +97,7 @@ theorem f25_not_coarse_congruent :
     ¬ CongruentKey coarseKey25 f25 := by
   intro h
   have hbad := h Four25.a Four25.b (by simp [coarseKey25])
-  simpa [coarseKey25, f25] using hbad
+  simp [coarseKey25, f25] at hbad
 
 theorem SC025_fine_congruence_not_imply_coarse :
     CongruentKey fineKey25 f25 ∧
@@ -134,7 +134,7 @@ theorem f26_not_fine_congruent :
     ¬ CongruentKey fineKey26 f26 := by
   intro h
   have hbad := h Four26.a Four26.b (by simp [fineKey26])
-  simpa [fineKey26, f26] using hbad
+  simp [fineKey26, f26] at hbad
 
 theorem SC026_coarse_congruence_not_imply_fine :
     CongruentKey coarseKey26 f26 ∧
